@@ -1,0 +1,14 @@
+{
+  "Menu": {
+    "Food": {
+      "Crispy Pata": {
+        "price": 500,
+        "qty": 15
+      },
+      "Fried Itik": {
+        "price": 285,
+        "qty": 108
+      }
+    }
+  }
+}
