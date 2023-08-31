@@ -17,7 +17,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body class="bg-dark">
+  <body class="bg-dark font-monospace text-uppercase">
     <main class="container min-vh-100 d-flex flex-column align-items-center">
       <img
         src="./assets/ep.png"
@@ -29,7 +29,7 @@
         class="bg-secondary-subtle p-3 rounded-3 overflow-scroll"
         style="height: 25rem; width: 20rem"
       >
-        <input
+        <!-- <input
           type="text"
           name="foodName"
           id="foodName"
@@ -38,7 +38,19 @@
         />
         <button type="submit" id="btn" class="btn btn-primary w-100">
           Add To Cart
-        </button>
+        </button> -->
+        <div class="d-flex overflow-x-scroll gap-2 w-100">
+          <button
+            id="BS"
+            class="btn btn-dark shadow-lg text-decoration-underline"
+          >
+            Best Sellers
+          </button>
+          <button id="PM" class="btn btn-dark">Pig Meat</button>
+          <button id="SF" class="btn btn-dark">Seafoods</button>
+          <button id="VG" class="btn btn-dark">Veggies</button>
+          <button id="CM" class="btn btn-dark">Chicken Meat</button>
+        </div>
         <div
           class="mt-4 d-flex flex-wrap gap-2 p-0 justify-content-center"
           id="myList"
