@@ -8,6 +8,7 @@ import {
   remove,
   update,
   child,
+  query,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
 const appSettings = {
@@ -16,36 +17,143 @@ const appSettings = {
 };
 const app = initializeApp(appSettings);
 const database = getDatabase(app);
-const itemsInDB = ref(database, "Menu/Food");
-
-let field = document.getElementById("foodName");
-let btn = document.getElementById("btn");
-let list = document.getElementById("myList");
-onValue(itemsInDB, function (snapshot) {
-  if (snapshot.exists()) {
-    console.log(Object.values(snapshot.val()));
-    list.innerHTML = "";
-    let itemsArray = Object.entries(snapshot.val());
-    for (let i = 0; i < itemsArray.length; i++) {
-      let currentItem = itemsArray[i];
-      appendToView(currentItem);
+let itemsInDB = ref(database, "Menu/Food/Seafoods");
+let bsBtn = document.getElementById("BS");
+let pmBtn = document.getElementById("PM");
+let sfBtn = document.getElementById("SF");
+let vgBtn = document.getElementById("VG");
+let cmBtn = document.getElementById("CM");
+addEventListener("DOMContentLoaded", function () {
+  let src = "Best Sellers";
+  itemsInDB = ref(database, "Menu/Food/Best Sellers");
+  onValue(itemsInDB, function (snapshot) {
+    if (snapshot.exists()) {
+      console.log(Object.values(snapshot.val()));
+      list.innerHTML = "";
+      let itemsArray = Object.entries(snapshot.val());
+      for (let i = 0; i < itemsArray.length; i++) {
+        let currentItem = itemsArray[i];
+        appendToView(currentItem, src);
+      }
+    } else {
+      list.innerHTML = "<h3>No items yet..</h3>";
     }
-  } else {
-    list.innerHTML = "<h3>No items yet..</h3>";
-  }
+  });
+});
+bsBtn.addEventListener("click", function () {
+  let src = "Best Sellers";
+  itemsInDB = ref(database, "Menu/Food/Best Sellers");
+  onValue(itemsInDB, function (snapshot) {
+    if (snapshot.exists()) {
+      console.log(Object.values(snapshot.val()));
+      list.innerHTML = "";
+      let itemsArray = Object.entries(snapshot.val());
+      for (let i = 0; i < itemsArray.length; i++) {
+        let currentItem = itemsArray[i];
+        appendToView(currentItem, src);
+      }
+    } else {
+      list.innerHTML = "<h3>No items yet..</h3>";
+    }
+  });
 });
 
-btn.addEventListener("click", function () {
-  let Rorname = field.value;
-  let dbror = ref(database, `Menu/Food/${Rorname}`);
-  update(dbror, { qty: 0 });
-  clear();
+pmBtn.addEventListener("click", function () {
+  let src = "Pig Meat";
+  itemsInDB = ref(database, "Menu/Food/Pig Meat");
+  onValue(itemsInDB, function (snapshot) {
+    if (snapshot.exists()) {
+      console.log(Object.values(snapshot.val()));
+      list.innerHTML = "";
+      let itemsArray = Object.entries(snapshot.val());
+      for (let i = 0; i < itemsArray.length; i++) {
+        let currentItem = itemsArray[i];
+        appendToView(currentItem, src);
+      }
+    } else {
+      list.innerHTML = "<h3>No items yet..</h3>";
+    }
+  });
 });
+sfBtn.addEventListener("click", function () {
+  let src = "Seafoods";
+  itemsInDB = ref(database, "Menu/Food/Seafoods");
+  onValue(itemsInDB, function (snapshot) {
+    if (snapshot.exists()) {
+      console.log(Object.values(snapshot.val()));
+      list.innerHTML = "";
+      let itemsArray = Object.entries(snapshot.val());
+      for (let i = 0; i < itemsArray.length; i++) {
+        let currentItem = itemsArray[i];
+        appendToView(currentItem, src);
+      }
+    } else {
+      list.innerHTML = "<h3>No items yet..</h3>";
+    }
+  });
+});
+vgBtn.addEventListener("click", function () {
+  let src = "Veggies";
+  itemsInDB = ref(database, "Menu/Food/Veggies");
+  onValue(itemsInDB, function (snapshot) {
+    if (snapshot.exists()) {
+      console.log(Object.values(snapshot.val()));
+      list.innerHTML = "";
+      let itemsArray = Object.entries(snapshot.val());
+      for (let i = 0; i < itemsArray.length; i++) {
+        let currentItem = itemsArray[i];
+        appendToView(currentItem, src);
+      }
+    } else {
+      list.innerHTML = "<h3>No items yet..</h3>";
+    }
+  });
+});
+cmBtn.addEventListener("click", function () {
+  let src = "Chicken Meat";
+  itemsInDB = ref(database, "Menu/Food/Chicken Meat");
+  onValue(itemsInDB, function (snapshot) {
+    if (snapshot.exists()) {
+      console.log(Object.values(snapshot.val()));
+      list.innerHTML = "";
+      let itemsArray = Object.entries(snapshot.val());
+      for (let i = 0; i < itemsArray.length; i++) {
+        let currentItem = itemsArray[i];
+        appendToView(currentItem, src);
+      }
+    } else {
+      list.innerHTML = "<h3>No items yet..</h3>";
+    }
+  });
+});
+// let field = document.getElementById("foodName");
+// let btn = document.getElementById("btn");
+let list = document.getElementById("myList");
+// onValue(itemsInDB, function (snapshot) {
+//   if (snapshot.exists()) {
+//     console.log(Object.values(snapshot.val()));
+//     list.innerHTML = "";
+//     let itemsArray = Object.entries(snapshot.val());
+//     for (let i = 0; i < itemsArray.length; i++) {
+//       let currentItem = itemsArray[i];
+//       appendToView(currentItem);
+//     }
+//   } else {
+//     list.innerHTML = "<h3>No items yet..</h3>";
+//   }
+// });
+
+// btn.addEventListener("click", function () {
+//   let Rorname = field.value;
+//   let dbror = ref(database, `Menu/Food/${Rorname}`);
+//   update(dbror, { qty: 0 });
+//   clear();
+// });
 
 function clear() {
   field.value = "";
 }
-function appendToView(item) {
+function appendToView(item, src) {
   let itemID = item[0];
   let itemValue = item[1].qty;
   //   list.innerHTML += `<div class="btn btn-dark text-white w-75 d-flex flex-column">
@@ -88,18 +196,29 @@ function appendToView(item) {
   subBtn.classList.add("btn", "btn-danger", "p-1");
   subBtn.textContent = "Subtract";
   subBtn.addEventListener("click", function () {
-    let inp = parseInt(document.getElementById(`${itemID}Inp`).value);
-    let ans = confirm(
-      `Are you sure you want to subtract ${inp} from ${itemID}?`
-    );
-    if (ans == true) {
-      let loc = ref(database, `Menu/Food/${itemID}`);
-      let newQty = parseInt(itemValue - inp);
+    let inp = document.getElementById(`${itemID}Inp`).value;
+    if (inp === "") {
+      let loc = ref(database, `Menu/Food/${src}/${itemID}`);
+      let newQty = parseInt(itemValue - 1);
       if (newQty < 0) {
         alert("You cannot have a negative stock!");
         document.getElementById(`${itemID}Inp`).value = null;
       } else {
         update(loc, { qty: newQty });
+      }
+    } else {
+      let ans = confirm(
+        `Are you sure you want to subtract ${inp} from ${itemID}?`
+      );
+      if (ans == true) {
+        let loc = ref(database, `Menu/Food/${src}/${itemID}`);
+        let newQty = parseInt(itemValue - inp);
+        if (newQty < 0) {
+          alert("You cannot have a negative stock!");
+          document.getElementById(`${itemID}Inp`).value = null;
+        } else {
+          update(loc, { qty: newQty });
+        }
       }
     }
   });
@@ -109,12 +228,18 @@ function appendToView(item) {
   addBtn.textContent = "Add";
   addBtn.addEventListener("click", function () {
     let inp = document.getElementById(`${itemID}Inp`).value;
-    let ans = confirm(`Are you sure you want to add ${inp} to ${itemID}?`);
-    if (ans == true) {
-      let loc = ref(database, `Menu/Food/${itemID}`);
-      console.log(itemValue);
-      let newQty = Number(itemValue) + Number(inp);
-      update(loc, { qty: Number(newQty) });
+    if (inp === "") {
+      let loc = ref(database, `Menu/Food/${src}/${itemID}`);
+      let newQty = parseInt(itemValue + 1);
+      update(loc, { qty: newQty });
+    } else {
+      let ans = confirm(`Are you sure you want to add ${inp} to ${itemID}?`);
+      if (ans == true) {
+        let loc = ref(database, `Menu/Food/${src}/${itemID}`);
+        console.log(itemValue);
+        let newQty = Number(itemValue) + Number(inp);
+        update(loc, { qty: Number(newQty) });
+      }
     }
   });
   btnDiv.append(addBtn);
@@ -130,8 +255,10 @@ function appendToView(item) {
   //   );
   //   if (ans == true) {
   //     let loc = ref(database, `Menu2/Food/${itemID}`);
-  //     let newQty = itemValue + inp;
-  //     update(loc, { qty: newQty });
+  //     let ror = query(loc);
+  //     console.log(ror);
+  //     // let newQty = itemValue + inp;
+  //     // update(loc, { qty: newQty });
   //   }
   // });
   // btnDiv.append(transferBtn);
