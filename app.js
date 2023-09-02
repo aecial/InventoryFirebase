@@ -1,5 +1,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+import {
   getDatabase,
   ref,
   push,
@@ -11,12 +17,39 @@ import {
   query,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
-const appSettings = {
+const firebaseConfig = {
+  apiKey: "AIzaSyAHUqREx7XGnLswhEM4yPhEqITt2_3p530",
+  authDomain: "playground-4b473.firebaseapp.com",
   databaseURL:
-    "https://playground-4b473-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    "https://playground-4b473-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "playground-4b473",
+  storageBucket: "playground-4b473.appspot.com",
+  messagingSenderId: "385939002444",
+  appId: "1:385939002444:web:9e9db5ce53e4d62a6250e9",
 };
-const app = initializeApp(appSettings);
+const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const auth = getAuth(app);
+const form = document.getElementById("myForm");
+const main = document.getElementById("main");
+const btn = document.getElementById("myBtn");
+const btnLogout = document.getElementById("myBtnLogout");
+btn.onclick = () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  signInWithEmailAndPassword(auth, email, password).then(console.log("Hemwo"));
+};
+btnLogout.onclick = () => signOut(auth).then(console.log("Signed Out!"));
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    form.hidden = true;
+    main.hidden = false;
+  } else {
+    form.hidden = false;
+    main.hidden = true;
+  }
+});
 let itemsInDB = ref(database, "Menu/Food/Seafoods");
 let bsBtn = document.getElementById("BS");
 let pmBtn = document.getElementById("PM");
@@ -28,7 +61,6 @@ addEventListener("DOMContentLoaded", function () {
   itemsInDB = ref(database, "Menu/Food/Best Sellers");
   onValue(itemsInDB, function (snapshot) {
     if (snapshot.exists()) {
-      console.log(Object.values(snapshot.val()));
       list.innerHTML = "";
       let itemsArray = Object.entries(snapshot.val());
       for (let i = 0; i < itemsArray.length; i++) {
