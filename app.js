@@ -224,7 +224,7 @@ function appendToView(item, src) {
   });
   btnDiv.append(subBtn);
   let addBtn = document.createElement("button");
-  addBtn.classList.add("btn", "btn-primary", "p-1");
+  addBtn.classList.add("btn", "btn-success", "p-1");
   addBtn.textContent = "Add";
   addBtn.addEventListener("click", function () {
     let inp = document.getElementById(`${itemID}Inp`).value;
