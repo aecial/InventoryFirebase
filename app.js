@@ -39,7 +39,7 @@ btn.onclick = () => {
   const password = document.getElementById("password").value;
   signInWithEmailAndPassword(auth, email, password).then(console.log("Hemwo"));
 };
-btnLogout.onclick = () => signOut(auth).then(console.log("Signed Out!"));
+btnLogout.onclick = () => signOut(auth).then(window.location.reload());
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
