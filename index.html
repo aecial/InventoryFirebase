@@ -18,62 +18,114 @@
     ></script>
   </head>
   <body class="bg-dark font-monospace text-uppercase">
-    <main class="container min-vh-100 d-flex flex-column align-items-center">
-      <img
-        src="./assets/ep.png"
-        alt="rocket dab"
-        class="img-fluid mb-4 mt-5"
-        style="max-width: 200px; max-height: 200px"
-      />
+    <div id="myForm" hidden>
       <div
-        class="bg-secondary-subtle p-3 rounded-3 overflow-scroll"
-        style="height: 25rem; width: 20rem"
+        class="d-flex flex-column vh-100 vw-100 align-items-center justify-content-center"
       >
-        <!-- <input
-          type="text"
-          name="foodName"
-          id="foodName"
-          class="form-control mb-2"
-          autocomplete="off"
+        <img
+          src="./assets/ep.png"
+          alt="rocket dab"
+          class="img-fluid mb-4 mt-5"
+          style="max-width: 200px; max-height: 200px"
         />
-        <button type="submit" id="btn" class="btn btn-primary w-100">
-          Add To Cart
-        </button> -->
-        <div class="d-flex overflow-x-scroll gap-2 w-100">
-          <button
-            id="BS"
-            class="btn btn-dark shadow-lg text-decoration-underline"
-          >
-            Best Sellers
-          </button>
-          <button id="PM" class="btn btn-dark">Pig Meat</button>
-          <button id="SF" class="btn btn-dark">Seafoods</button>
-          <button id="VG" class="btn btn-dark">Veggies</button>
-          <button id="CM" class="btn btn-dark">Chicken Meat</button>
-        </div>
-        <div
-          class="mt-4 d-flex flex-wrap gap-2 p-0 justify-content-center"
-          id="myList"
-        >
-          <!-- <div class="btn btn-dark text-white w-75 d-flex flex-column">
-            <div>
-              Fried Itik -
-              <span class="fst-italic text-decoration-underline">100</span>
-            </div>
+        <div class="inputs d-flex flex-column gap-2">
+          <div class="form-floating">
             <input
-              type="number"
+              type="email"
               name=""
-              id=""
-              class="text-center mb-2"
-              value="0"
+              id="email"
+              class="form-control"
+              placeholder="Input Email Here"
+              required
+              autocomplete="off"
             />
-            <div class="d-flex justify-content-between">
-              <button class="btn btn-primary p-1">Subtract</button>
-              <button class="btn btn-primary p-1">Add</button>
-              <button class="btn btn-primary p-1">Transfer</button>
-            </div>
-          </div> -->
+            <label for="">Email</label>
+          </div>
+          <div class="form-floating">
+            <input
+              type="Password"
+              name=""
+              id="password"
+              class="form-control"
+              placeholder="Input Password Here"
+              required
+            />
+            <label for="">Password</label>
+          </div>
+          <button id="myBtn" type="submit" class="btn btn-dark border-white">
+            LOGIN
+          </button>
         </div>
+      </div>
+    </div>
+    <main id="main" hidden>
+      <div
+        id="Inventory"
+        class="container min-vh-100 d-flex flex-column align-items-center"
+      >
+        <img
+          src="./assets/ep.png"
+          alt="rocket dab"
+          class="img-fluid mb-4 mt-5"
+          style="max-width: 200px; max-height: 200px"
+        />
+        <div
+          class="bg-secondary-subtle p-3 rounded-3 overflow-scroll"
+          style="height: 25rem; width: 20rem"
+        >
+          <!-- <input
+            type="text"
+            name="foodName"
+            id="foodName"
+            class="form-control mb-2"
+            autocomplete="off"
+          />
+          <button type="submit" id="btn" class="btn btn-primary w-100">
+            Add To Cart
+          </button> -->
+          <div class="d-flex overflow-x-scroll gap-2 w-100">
+            <button
+              id="BS"
+              class="btn btn-dark shadow-lg text-decoration-underline"
+            >
+              Best Sellers
+            </button>
+            <button id="PM" class="btn btn-dark">Pig Meat</button>
+            <button id="SF" class="btn btn-dark">Seafoods</button>
+            <button id="VG" class="btn btn-dark">Veggies</button>
+            <button id="CM" class="btn btn-dark">Chicken Meat</button>
+          </div>
+          <div
+            class="mt-4 d-flex flex-wrap gap-2 p-0 justify-content-center"
+            id="myList"
+          >
+            <!-- <div class="btn btn-dark text-white w-75 d-flex flex-column">
+              <div>
+                Fried Itik -
+                <span class="fst-italic text-decoration-underline">100</span>
+              </div>
+              <input
+                type="number"
+                name=""
+                id=""
+                class="text-center mb-2"
+                value="0"
+              />
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-primary p-1">Subtract</button>
+                <button class="btn btn-primary p-1">Add</button>
+                <button class="btn btn-primary p-1">Transfer</button>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <button
+          id="myBtnLogout"
+          type="submit"
+          class="btn btn-dark border-white mt-3"
+        >
+          LOGOUT
+        </button>
       </div>
     </main>
     <script src="app.js" type="module"></script>
