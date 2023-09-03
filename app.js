@@ -56,6 +56,8 @@ let pmBtn = document.getElementById("PM");
 let sfBtn = document.getElementById("SF");
 let vgBtn = document.getElementById("VG");
 let cmBtn = document.getElementById("CM");
+let dsBtn = document.getElementById("DS");
+let dlBtn = document.getElementById("DL");
 addEventListener("DOMContentLoaded", function () {
   let src = "Best Sellers";
   itemsInDB = ref(database, "Menu/Food/Best Sellers");
@@ -144,6 +146,40 @@ vgBtn.addEventListener("click", function () {
 cmBtn.addEventListener("click", function () {
   let src = "Chicken Meat";
   itemsInDB = ref(database, "Menu/Food/Chicken Meat");
+  onValue(itemsInDB, function (snapshot) {
+    if (snapshot.exists()) {
+      console.log(Object.values(snapshot.val()));
+      list.innerHTML = "";
+      let itemsArray = Object.entries(snapshot.val());
+      for (let i = 0; i < itemsArray.length; i++) {
+        let currentItem = itemsArray[i];
+        appendToView(currentItem, src);
+      }
+    } else {
+      list.innerHTML = "<h3>No items yet..</h3>";
+    }
+  });
+});
+dsBtn.addEventListener("click", function () {
+  let src = "Drinks Small";
+  itemsInDB = ref(database, "Menu/Food/Drinks Small");
+  onValue(itemsInDB, function (snapshot) {
+    if (snapshot.exists()) {
+      console.log(Object.values(snapshot.val()));
+      list.innerHTML = "";
+      let itemsArray = Object.entries(snapshot.val());
+      for (let i = 0; i < itemsArray.length; i++) {
+        let currentItem = itemsArray[i];
+        appendToView(currentItem, src);
+      }
+    } else {
+      list.innerHTML = "<h3>No items yet..</h3>";
+    }
+  });
+});
+dlBtn.addEventListener("click", function () {
+  let src = "Drinks Large";
+  itemsInDB = ref(database, "Menu/Food/Drinks Large");
   onValue(itemsInDB, function (snapshot) {
     if (snapshot.exists()) {
       console.log(Object.values(snapshot.val()));
